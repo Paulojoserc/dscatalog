@@ -14,12 +14,12 @@ import javax.persistence.Table;
 @Table(name = "tb_category")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Id //criando id no banco
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // anotação para ao Id ficar alto complete
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
+
 	public Category() {
 	}
 
@@ -60,8 +60,5 @@ public class Category implements Serializable {
 		Category other = (Category) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
-	
+
 }
