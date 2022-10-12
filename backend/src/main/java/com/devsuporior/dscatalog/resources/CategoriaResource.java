@@ -1,8 +1,6 @@
 package com.devsuporior.dscatalog.resources;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.devsuporior.dscatalog.dto.CategoryDTO;
-import com.devsuporior.dscatalog.entities.Category;
 import com.devsuporior.dscatalog.services.CategoryService;
 
 @RestController
