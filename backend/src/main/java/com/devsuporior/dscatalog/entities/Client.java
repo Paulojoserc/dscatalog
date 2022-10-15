@@ -3,6 +3,7 @@ package com.devsuporior.dscatalog.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,12 @@ public class Client  implements Serializable {
 	private String name;
 	private String cpf;
 	private Double income;
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant birthDate;
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Integer children;
+	
+	public Client() {
+		
+	}
 }
