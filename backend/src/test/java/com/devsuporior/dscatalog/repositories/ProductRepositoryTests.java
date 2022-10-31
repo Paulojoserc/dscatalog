@@ -1,5 +1,7 @@
 package com.devsuporior.dscatalog.repositories;
 
+import static org.assertj.core.api.Assertions.extractProperty;
+
 import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
@@ -28,16 +30,18 @@ public class ProductRepositoryTests {
 		nonExistingId = 1000L;
 		countTotalProducts = 25L;
 	}
+
 	@Test
 	public void saveShouldPersistWithAutoincrementWhenIdIsNull() {
 		Product product = Factory.createProduct();
 		product.setId(null);
-		
+
 		product = repository.save(product);
-		
+
 		Assertions.assertNotNull(product.getId());
-		Assertions.assertEquals(countTotalProducts +1, product.getId());
+		Assertions.assertEquals(countTotalProducts + 1, product.getId());
 	}
+
 	@Test
 	public void deleteShouldDeleteObjectWhenIdExists() {
 
@@ -55,4 +59,13 @@ public class ProductRepositoryTests {
 		});
 
 	}
+
+	public void findByIdReturnNonEmptyOptionalWhenIdExists() {
+
+		Optional<Product> result = repository.findById(exintingId);
+
+		Assertions.assertTrue(result.isPresent());
+	}
+	
+	
 }
