@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import com.devsuporior.dscatalog.dto.ProductDTO;
 import com.devsuporior.dscatalog.repositories.tests.Factory;
@@ -41,6 +42,8 @@ public class ProductResourceTests {
 	
 	@Test
 	public void findAllShouldReturnPage() throws Exception{
-		mockMvc.perform(get("/products")).andExpect(status().isOk());
+		ResultActions result = mockMvc.perform(get("/products"));
+		
+		result.andExpect(status().isOk());
 	}
 }
