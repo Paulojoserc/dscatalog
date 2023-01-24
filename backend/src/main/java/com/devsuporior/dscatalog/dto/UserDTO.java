@@ -20,7 +20,7 @@ public class UserDTO implements Serializable {
 	}
 
 	public UserDTO(Long id, String firstName, String lastName, String email) {
-		super();
+		
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
