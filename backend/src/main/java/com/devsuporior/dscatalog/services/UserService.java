@@ -9,11 +9,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuporior.dscatalog.dto.RoleDTO;
 import com.devsuporior.dscatalog.dto.UserDTO;
+import com.devsuporior.dscatalog.dto.UserInsertDTO;
 import com.devsuporior.dscatalog.entities.Role;
 import com.devsuporior.dscatalog.entities.User;
 import com.devsuporior.dscatalog.repositories.RoleRepository;
@@ -23,12 +25,13 @@ import com.devsuporior.dscatalog.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
-
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	private UserRepository repository;
 	@Autowired
 	private RoleRepository roleRepository;
-	
+
 	@Transactional(readOnly = true)
 	public Page<UserDTO> findAllPaged(Pageable pageable) {
 		Page<User> list = repository.findAll(pageable);
@@ -45,9 +48,10 @@ public class UserService {
 	}
 
 	@Transactional
-	public UserDTO insert(UserDTO dto) {
+	public UserDTO insert(UserInsertDTO dto) {
 		User entity = new User();
 		copyDtoEntity(dto, entity);
+		entity.setPassword(passwordEncoder.encode(dto.getPassword()));
 		entity = repository.save(entity);
 		return new UserDTO(entity);
 	}
