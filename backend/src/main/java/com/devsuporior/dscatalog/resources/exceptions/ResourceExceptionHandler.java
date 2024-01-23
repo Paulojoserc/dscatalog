@@ -40,6 +40,7 @@ public class ResourceExceptionHandler {
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
+		
 
 	}
 	@ExceptionHandler(MethodArgumentNotValidException.class)
